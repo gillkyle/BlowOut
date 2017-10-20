@@ -25,10 +25,7 @@ namespace BlowOut.Controllers
         {
             return
                 "<html>" +
-                    "<style>" +
-                    "span {text-decoration: underline; font-weight: 700;}" +
-                    "</style>" +
-                    "Please call Support at <span>801-555-1212</span>. Thank you " + name + ". We will send an email to " + email +
+                "Thank you " + name + ". We will send an email to " + email +
                 "</html>";
         }
 
