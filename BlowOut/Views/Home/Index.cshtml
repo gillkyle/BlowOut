@@ -2,30 +2,90 @@
     ViewBag.Title = "Blow Out!";
 }
 <!--McKay Palmer, Kyle Gill, Hammy Hamilton, James Winters-->
-<div class="jumbotron">
-    <h1>Welcome to Blow Out!</h1>
-    <p class="lead">We blow our competetitors out of the water</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="jumbotron bg-image">
+    <div class="jumbotron-title">
+        <h1>Welcome to Blow Out!</h1>
+        <p class="lead">We blow our competetitors out of the water</p>
+    </div>
+    <p>@Html.ActionLink("Checkpoint #2", "Email", "Contact", new { email = "test@test.com", name = "kyle" }, new { @class = "btn btn-primary btn-large" })</p> 
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-lg-12 title-description">Rent new and used instruments from our diverse and impressive collection of austere and modern instruments.</div>
+    <div class="col-lg-12 title-quote">"It's easy to play any musical instrument: all you have to do is touch the right key at the right time and the instrument will play itself”.  - Johann Sebastian Bach</div>
+</div>
+
+<div class="row" style="margin-top: 20px">
+    <div class="card-group">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Allora-AATR-101-Bb-Trumpet-AATR101-Lacquer/585003000901000-00-250x250.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Trumpet</h4>
+                    <p class="card-text">A fine new brass instrument for your collection</p>
+                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "trumpet", price = 55, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "trumpet", price = 25, used = true }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="https://media.wwbw.com/is/image/MMGS7/Student-Series-Bb-Trombone-Model-AATB-102/585004000000000-00-220x220.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Trombone</h4>
+                    <p class="card-text">A fine new brass instrument for your collection</p>
+                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "trombone", price = 60, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "trombone", price = 35, used = true }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Miraphone-186-Series-Rotary-Valve-CC-Tuba-186--4VC-4-Valve/463924000950000-00-250x250.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Tuba</h4>
+                    <p class="card-text">A fine new brass instrument for your collection</p>
+                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "tuba", price = 70, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "tuba", price = 50, used = true }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+<div class="row" style="margin-top: 20px">
+    <div class="card-group">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="http://images.samash.com/sa/G2S/G2SP-P.fpx?cell=540,400&qlt=90&cvt=jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Flute</h4>
+                    <p class="card-text">A fine new brass instrument for your collection</p>
+                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "flute", price = 40, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "flute", price = 25, used = true }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Yamaha-YCL-CSVR-Series-Professional-Bb-Clarinet-Standard/J19128000000000-00-250x250.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Clarinet</h4>
+                    <p class="card-text">A fine new brass instrument for your collection</p>
+                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "clarinet", price = 35, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "clarinet", price = 27, used = true }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top img-responsive" src="https://media.wwbw.com/is/image/MMGS7/Chicago-Jazz-Alto-Saxophone-AAAS-954--Dark-Gold-Lacquer/585574000954000-00-500x500.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Saxophone</h4>
+                    <p class="card-text">A fine new brass instrument for your collection</p>
+                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "saxophone", price = 42, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "saxophone", price = 30, used = true }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
     </div>
 </div>
