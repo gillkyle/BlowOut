@@ -29,6 +29,7 @@ namespace BlowOut.Controllers
                 ViewBag.image = instrumentImageDictionary[name];
             }
 
+
             ViewBag.name = name;
             ViewBag.price = price;
             // Provide a string whether the instrument is new or used
