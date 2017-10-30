@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Blow Out!";
+    ViewBag.Title = "Rentals";
 }
 <!--McKay Palmer, Kyle Gill, Hammy Hamilton, James Winters-->
 <div class="jumbotron bg-image">
@@ -19,71 +19,81 @@
     <div class="card-group">
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Allora-AATR-101-Bb-Trumpet-AATR101-Lacquer/585003000901000-00-250x250.jpg" alt="Card image cap">
+                <a href="@Url.Action("NewOrUsed", "Instrument", new { name = "Trumpet"})">
+                    <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Allora-AATR-101-Bb-Trumpet-AATR101-Lacquer/585003000901000-00-250x250.jpg" alt="Card image cap">
+                </a>
                 <div class="card-body">
                     <h4 class="card-title">Trumpet</h4>
                     <p class="card-text">A fine brass instrument necessary for any collection</p>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "Trumpet", price = 55, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "Trumpet", price = 25, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
+
+
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top img-responsive" src="https://media.wwbw.com/is/image/MMGS7/Student-Series-Bb-Trombone-Model-AATB-102/585004000000000-00-220x220.jpg" alt="Card image cap">
+                <a href="@Url.Action("NewOrUsed", "Instrument", new { name = "Trombone"})">
+                    <img class="card-img-top img-responsive" src="https://media.wwbw.com/is/image/MMGS7/Student-Series-Bb-Trombone-Model-AATB-102/585004000000000-00-220x220.jpg" alt="Card image cap">
+                </a>
                 <div class="card-body">
                     <h4 class="card-title">Trombone</h4>
                     <p class="card-text">A brass powerhouse to overwhelm audiences</p>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "Trombone", price = 60, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "Trombone", price = 35, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Miraphone-186-Series-Rotary-Valve-CC-Tuba-186--4VC-4-Valve/463924000950000-00-250x250.jpg" alt="Card image cap">
+                <a href="@Url.Action("NewOrUsed", "Instrument", new { name = "Tuba"})">
+                    <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Miraphone-186-Series-Rotary-Valve-CC-Tuba-186--4VC-4-Valve/463924000950000-00-250x250.jpg" alt="Card image cap">
+                </a>
                 <div class="card-body">
                     <h4 class="card-title">Tuba</h4>
                     <p class="card-text">A large brass instrument with a wide sound</p>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "Tuba", price = 70, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "Tuba", price = 50, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
+
+
     </div>
 </div>
+
+
+
 <div class="row" style="margin-top: 20px">
     <div class="card-group">
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top img-responsive" src="http://images.samash.com/sa/G2S/G2SP-P.fpx?cell=540,400&qlt=90&cvt=jpg" alt="Card image cap">
+                <a href="@Url.Action("NewOrUsed", "Instrument", new { name = "Flute"})">
+                    <img class="card-img-top img-responsive" src="http://images.samash.com/sa/G2S/G2SP-P.fpx?cell=540,400&qlt=90&cvt=jpg" alt="Card image cap">
+                </a>
                 <div class="card-body">
-                    <h4 class="card-title">Flute</h4>
+                    <h4 class="card-title">Saxophone</h4>
                     <p class="card-text">A beautifully clean sound, quaint like song birds</p>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "Flute", price = 40, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "Flute", price = 25, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Yamaha-YCL-CSVR-Series-Professional-Bb-Clarinet-Standard/J19128000000000-00-250x250.jpg" alt="Card image cap">
+                <a href="@Url.Action("NewOrUsed", "Instrument", new { name = "Clarinet"})">
+                    <img class="card-img-top img-responsive" src="https://media.musicarts.com/is/image/MMGS7/Yamaha-YCL-CSVR-Series-Professional-Bb-Clarinet-Standard/J19128000000000-00-250x250.jpg" alt="Card image cap">
+                </a>
                 <div class="card-body">
-                    <h4 class="card-title">Clarinet</h4>
+                    <h4 class="card-title">Saxophone</h4>
                     <p class="card-text">A woodwind reed instrument for soft, delightful sound</p>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "Clarinet", price = 35, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "Clarinet", price = 27, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img-top img-responsive" src="https://media.wwbw.com/is/image/MMGS7/Chicago-Jazz-Alto-Saxophone-AAAS-954--Dark-Gold-Lacquer/585574000954000-00-500x500.jpg" alt="Card image cap">
+                    <a href="@Url.Action("NewOrUsed", "Instrument", new { name = "Saxophone"})">
+                        <img class="card-img-top img-responsive" src="https://media.wwbw.com/is/image/MMGS7/Chicago-Jazz-Alto-Saxophone-AAAS-954--Dark-Gold-Lacquer/585574000954000-00-500x500.jpg" alt="Card image cap">
+                    </a>               
                 <div class="card-body">
                     <h4 class="card-title">Saxophone</h4>
                     <p class="card-text">Romantic, alluring music for the casanova</p>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = "Saxophone", price = 42, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = "Saxophone", price = 30, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
