@@ -14,30 +14,51 @@ namespace BlowOut.Controllers
             return View();
         }
 
-        public ActionResult Rental(string name, int price, Boolean used)
+        public ActionResult Rental(string name, string url, Boolean used)
         {
-            Dictionary<string, string> instrumentImageDictionary = new Dictionary<string, string>();
-            instrumentImageDictionary.Add("Trumpet", "https://media.musicarts.com/is/image/MMGS7/Allora-AATR-101-Bb-Trumpet-AATR101-Lacquer/585003000901000-00-250x250.jpg");
-            instrumentImageDictionary.Add("Trombone", "https://media.wwbw.com/is/image/MMGS7/Student-Series-Bb-Trombone-Model-AATB-102/585004000000000-00-220x220.jpg");
-            instrumentImageDictionary.Add("Saxophone", "https://media.wwbw.com/is/image/MMGS7/Chicago-Jazz-Alto-Saxophone-AAAS-954--Dark-Gold-Lacquer/585574000954000-00-500x500.jpg");
-            instrumentImageDictionary.Add("Flute", "http://images.samash.com/sa/G2S/G2SP-P.fpx?cell=540,400&qlt=90&cvt=jpg");
-            instrumentImageDictionary.Add("Clarinet", "https://media.musicarts.com/is/image/MMGS7/Yamaha-YCL-CSVR-Series-Professional-Bb-Clarinet-Standard/J19128000000000-00-250x250.jpg");
-            instrumentImageDictionary.Add("Tuba", "https://media.musicarts.com/is/image/MMGS7/Miraphone-186-Series-Rotary-Valve-CC-Tuba-186--4VC-4-Valve/463924000950000-00-250x250.jpg");
-
-            if (instrumentImageDictionary.ContainsKey(name))
-            {
-                ViewBag.image = instrumentImageDictionary[name];
-            }
-
 
             ViewBag.name = name;
-            ViewBag.price = price;
+            ViewBag.url = url;
+
             // Provide a string whether the instrument is new or used
-            if (used) {
+            string concatName = "Error";
+            if (used)
+            {
                 ViewBag.used = "Used";
-            } else {
+                concatName = name + "Used";
+            }
+            else
+            {
                 ViewBag.used = "New";
+                concatName = name + "New";
             };
+
+            Dictionary<string, int> instrumentPriceDictionary = new Dictionary<string, int>();
+            instrumentPriceDictionary.Add("TrumpetUsed", 25);
+            instrumentPriceDictionary.Add("TrumpetNew", 55);
+            instrumentPriceDictionary.Add("TromboneUsed", 35);
+            instrumentPriceDictionary.Add("TromboneNew", 60);
+            instrumentPriceDictionary.Add("SaxophoneUsed", 30);
+            instrumentPriceDictionary.Add("SaxophoneNew", 42);
+            instrumentPriceDictionary.Add("FluteUsed", 25);
+            instrumentPriceDictionary.Add("FluteNew", 40);
+            instrumentPriceDictionary.Add("ClarinetUsed", 27);
+            instrumentPriceDictionary.Add("ClarinetNew", 35);
+            instrumentPriceDictionary.Add("TubaUsed", 50);
+            instrumentPriceDictionary.Add("TubaNew", 70);
+
+            if (instrumentPriceDictionary.ContainsKey(concatName))
+            {
+                ViewBag.price = instrumentPriceDictionary[concatName];
+            }
+
+            return View();
+        }
+
+        public ActionResult NewOrUsed(string name, string url)
+        {
+            ViewBag.name = name;
+            ViewBag.url = url;
             return View();
         }
     }
