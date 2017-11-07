@@ -12,8 +12,8 @@
                 <img class="card-img-top img-responsive" src="@ViewBag.url" alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title">@ViewBag.name</h4>
-                    @Html.ActionLink("Rent New", "Rental", "Instrument", new { name = ViewBag.name, url = ViewBag.url, used = false }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Rent Used", "Rental", "Instrument", new { name = ViewBag.name, url = ViewBag.url, used = true }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent New", "Create", "Clients", new { name = ViewBag.name, url = ViewBag.url, used = false }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Rent Used", "Create", "Clients", new { name = ViewBag.name, url = ViewBag.url, used = true }, new { @class = "btn btn-primary" })
                 </div>
             </div>
           </div>
