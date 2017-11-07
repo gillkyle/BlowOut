@@ -57,8 +57,39 @@ namespace BlowOut.Controllers
 
         public ActionResult NewOrUsed(string name, string url)
         {
-            ViewBag.name = name;
-            ViewBag.url = url;
+            ViewBag.name = name;//instrument name
+            ViewBag.url = url;//image url
+
+            switch (name)
+            {
+                case "Trumpet":
+                    ViewBag.instrumentNew = 1;
+                    ViewBag.instrumentUsed = 2;
+                    break;
+                case "Trombone":
+                    ViewBag.instrumentNew = 3;
+                    ViewBag.instrumentUsed = 4;
+                    break;
+                case "Tuba":
+                    ViewBag.instrumentNew = 5;
+                    ViewBag.instrumentUsed = 6;
+                    break;
+                case "Flute":
+                    ViewBag.instrumentNew = 7;
+                    ViewBag.instrumentUsed = 8;
+                    break;
+                case "Clarinet":
+                    ViewBag.instrumentNew = 9;
+                    ViewBag.instrumentUsed = 10;
+                    break;
+                case "Saxophone":
+                    ViewBag.instrumentNew = 11;
+                    ViewBag.instrumentUsed = 12;
+                    break;
+                default:
+                    Console.WriteLine("Error");
+                    break;
+            }
             return View();
         }
     }

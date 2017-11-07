@@ -11,7 +11,7 @@ namespace BlowOut.Models
     public class Client
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int clientID {get; set;}
         public string firstName { get; set; }
         public string lastName { get; set; }
