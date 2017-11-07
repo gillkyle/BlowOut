@@ -53,6 +53,7 @@ namespace BlowOut.Controllers
         {
             if (ModelState.IsValid)
             {
+                instrument.instrumentID = db.Instruments.Max(i => i.instrumentID) + 1;
                 db.Instruments.Add(instrument);
                 db.SaveChanges();
                 return RedirectToAction("Index");

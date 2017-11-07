@@ -37,10 +37,11 @@ namespace BlowOut.Controllers
         }
 
         // GET: Clients/Create
-        public ActionResult Create(int? instrumentID)
+        public ActionResult Create(int? instrumentID, string url)
         {
             Instrument instrument = db.Instruments.Find(instrumentID);//Store instrumentID from Instruments table in instrument
             ViewBag.instrument = instrument; //Add instrument to the ViewBag
+            ViewBag.url = url;
             return View();
         }
 
@@ -49,19 +50,30 @@ namespace BlowOut.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "clientID,firstName,lastName,address,city,state,zip,email,phone")] Client client, int? instrumentID)
+        public ActionResult Create([Bind(Include = "clientID,firstName,lastName,address,city,state,zip,email,phone")] Client client, int? instrumentID, string url)
         {
-           
-            Instrument instrumentFound = db.Instruments.Find(8);
-            instrumentFound.clientID = client.clientID;
+
             if (ModelState.IsValid)
             {
+                client.clientID = db.Clients.Max(c => c.clientID) + 1;
+
+                Instrument instrumentFound = db.Instruments.Find(instrumentID);
+                instrumentFound.clientID = client.clientID;
+
                 db.Clients.Add(client);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Summary", "Clients", new { instrument = instrumentFound, url = url });
             }
 
             return View(client);
+        }
+
+        public ActionResult Summary(Instrument instrumentFound, string url)
+        {
+            Client client = db.Clients.Find(instrumentFound.clientID);
+            ViewBag.client = client;
+            ViewBag.instrument = instrumentFound;
+            return View();
         }
 
         // GET: Clients/Edit/5
