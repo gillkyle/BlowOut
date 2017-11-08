@@ -16,6 +16,7 @@ namespace BlowOut.Models
         public string desc { get; set; }
         public string type { get; set; }
         public int price { get; set; }
+        public string url { get; set; }
 
         [ForeignKey("Client")]
         public virtual int clientID { get; set; }

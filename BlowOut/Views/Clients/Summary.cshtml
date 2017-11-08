@@ -5,6 +5,24 @@
 <h2>Summary</h2>
 
 Thank you @ViewBag.client.firstName @ViewBag.client.lastName, your order number is @ViewBag.client.clientID! <br /><br />
-
+@ViewBag.instrument.desc <br />
 @ViewBag.instrument.type <br />
-@ViewBag.instrument.desc
+<img src= "@ViewBag.instrument.url" height="300"/> <br /><br />
+
+
+
+Price: $@ViewBag.instrument.price.00 a month<br />
+Total Price after 18 months: $@ViewBag.price18Month
+
+<div class="row">
+    <div class="col-md-4">
+        <span class="bg-success">Instrument is yours after 18 months!</span>
+        <br /><br />
+        <span class="bg-warning">Any returns before 3 months carry a $200 re-stocking fee</span>
+        <span class="bg-warning">Equity forfeited if returned after 3 months</span>
+    </div>
+
+
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+</div>

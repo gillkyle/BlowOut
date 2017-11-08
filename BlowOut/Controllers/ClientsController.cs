@@ -37,11 +37,11 @@ namespace BlowOut.Controllers
         }
 
         // GET: Clients/Create
-        public ActionResult Create(int? instrumentID, string url)
+        public ActionResult Create(int? instrumentID /*, string url*/)
         {
             Instrument instrument = db.Instruments.Find(instrumentID);//Store instrumentID from Instruments table in instrument
             ViewBag.instrument = instrument; //Add instrument to the ViewBag
-            ViewBag.url = url;
+            /*ViewBag.url = url;*/
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace BlowOut.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "clientID,firstName,lastName,address,city,state,zip,email,phone")] Client client, int? instrumentID, string url)
+        public ActionResult Create([Bind(Include = "clientID,firstName,lastName,address,city,state,zip,email,phone")] Client client, int? instrumentID /*, string url*/)
         {
 
             if (ModelState.IsValid)
@@ -62,17 +62,18 @@ namespace BlowOut.Controllers
 
                 db.Clients.Add(client);
                 db.SaveChanges();
-                return RedirectToAction("Summary", "Clients", new { instrument = instrumentFound, url = url });
+                return RedirectToAction("Summary", "Clients", instrumentFound /*new { instrument = instrumentFound, url = url }*/);
             }
 
             return View(client);
         }
 
-        public ActionResult Summary(Instrument instrumentFound, string url)
+        public ActionResult Summary(Instrument instrumentFound /*, string url*/)
         {
             Client client = db.Clients.Find(instrumentFound.clientID);
             ViewBag.client = client;
             ViewBag.instrument = instrumentFound;
+            ViewBag.price18Month = instrumentFound.price * 18;
             return View();
         }
 
