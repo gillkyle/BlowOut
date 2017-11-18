@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using BlowOut.DAL;
 using BlowOut.Models;
+using System.Web.Security;
 
 namespace BlowOut.Controllers
 {
     public class ClientsController : Controller
     {
         private BLOWOUTContext db = new BLOWOUTContext();
+        static int authentic;
 
         // GET: Clients
         public ActionResult Index()
@@ -22,7 +24,7 @@ namespace BlowOut.Controllers
         }
 
         // GET: Clients/Details/5
-        public ActionResult Details(int? id)
+       /*  public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -34,7 +36,7 @@ namespace BlowOut.Controllers
                 return HttpNotFound();
             }
             return View(client);
-        }
+        } */
 
         // GET: Clients/Create
         public ActionResult Create(int? instrumentID /*, string url*/)
@@ -89,6 +91,7 @@ namespace BlowOut.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(client);
         }
 
@@ -103,12 +106,12 @@ namespace BlowOut.Controllers
             {
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UpdateData");
             }
             return View(client);
         }
 
-        // GET: Clients/Delete/5
+        /*// GET: Clients/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,18 +123,77 @@ namespace BlowOut.Controllers
             {
                 return HttpNotFound();
             }
-            return View(client);
-        }
+             return View(client);
+        } */
 
         // POST: Clients/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+    /*    [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken] */
+        public ActionResult Delete(int clientID, int instrumentID)
         {
-            Client client = db.Clients.Find(id);
-            db.Clients.Remove(client);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var deleteMe = db.Database.SqlQuery<Instrument>(
+                "Select * " +
+                "FROM Instrument " +
+                "WHERE clientID = " + clientID);
+
+            if (deleteMe.Count() == 1)
+            {
+                Client client = db.Clients.Find(clientID);
+                db.Clients.Remove(client);
+                db.SaveChanges();
+            }
+
+            if (instrumentID > 0)
+            {
+                Instrument instrument = db.Instruments.Find(instrumentID);
+                instrument.clientID = 0;
+                db.Entry(instrument).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("UpdateData");
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult UpdateData(string username, string password)
+        {
+            if (authentic == 1)
+            {
+                ViewBag.instrument = db.Instruments.ToList();
+                return View(db.Clients.ToList());
+            }
+
+           else if (username == null || password == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            else
+            {
+
+                var currentUser = db.Database.SqlQuery<User>(
+                     "Select * " +
+                     "FROM [User] " +
+                     "WHERE username COLLATE Latin1_General_CS_AS = '" + username + "' AND " +
+                     "password COLLATE Latin1_General_CS_AS = '" + password + "'");
+
+                if (currentUser.Count() > 0)
+                {
+                    authentic = 1;
+                    FormsAuthentication.SetAuthCookie(username, true);
+                    ViewBag.instrument = db.Instruments.ToList();
+
+                    return View(db.Clients.ToList());
+
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+            }
         }
 
         protected override void Dispose(bool disposing)
