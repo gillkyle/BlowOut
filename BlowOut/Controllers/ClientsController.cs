@@ -153,14 +153,44 @@ namespace BlowOut.Controllers
             return RedirectToAction("UpdateData");
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
-        public ActionResult UpdateData(string username, string password)
+        [HttpPost]
+        public ActionResult Login(FormCollection form)
         {
-            if (authentic == 1)
+            String username = form["username"].ToString();
+            String password = form["password"].ToString();
+
+            var currentUser = db.Database.SqlQuery<User>(
+                    "Select * " +
+                    "FROM [User] " +
+                    "WHERE username COLLATE Latin1_General_CS_AS = '" + username + "' AND " +
+                    "password COLLATE Latin1_General_CS_AS = '" + password + "'");
+
+            if (currentUser.Count() > 0)
+            {
+                //authentic = 1;
+                FormsAuthentication.SetAuthCookie(username, false);
+
+                return RedirectToAction("UpdateData");
+
+            }
+
+            else
+            {
+                return View();
+            }
+
+        }
+
+        [Authorize]
+        public ActionResult UpdateData()
+        {
+           /* if (authentic == 1)
             {
                 ViewBag.instrument = db.Instruments.ToList();
                 return View(db.Clients.ToList());
@@ -181,19 +211,19 @@ namespace BlowOut.Controllers
                      "password COLLATE Latin1_General_CS_AS = '" + password + "'");
 
                 if (currentUser.Count() > 0)
-                {
-                    authentic = 1;
-                    FormsAuthentication.SetAuthCookie(username, true);
+                { */
+                   // authentic = 1;
+                   // FormsAuthentication.SetAuthCookie(username, true);
                     ViewBag.instrument = db.Instruments.ToList();
 
                     return View(db.Clients.ToList());
-
+            /*
                 }
                 else
                 {
                     return RedirectToAction("Login");
                 }
-            }
+            } */
         }
 
         protected override void Dispose(bool disposing)

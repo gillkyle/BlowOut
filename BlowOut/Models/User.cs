@@ -14,4 +14,12 @@ namespace BlowOut.Models
         public string username { get; set; }
         public string password { get; set; }
     }
+
+    /*
+         CREATE TABLE [dbo].[User] (
+    [username] VARCHAR(30) NOT NULL PRIMARY KEY,
+    [password] VARCHAR (30) NOT NULL,
+    );
+
+    */
 }
