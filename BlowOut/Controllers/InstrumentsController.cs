@@ -19,28 +19,28 @@ namespace BlowOut.Controllers
         public ActionResult Index()
         {
             var instruments = db.Instruments.Include(i => i.Client);
-            return View(instruments.ToList());
+            return View(instruments.ToList()); //pass instruments as a list to view
         }
 
         // GET: Instruments/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (id == null) //checks if an id is passed
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instrument instrument = db.Instruments.Find(id);
-            if (instrument == null)
+            Instrument instrument = db.Instruments.Find(id); //try to find id
+            if (instrument == null) //throws error if instrument id doesn't exist
             {
                 return HttpNotFound();
             }
-            return View(instrument);
+            return View(instrument); //passes instrument if it exists
         }
 
         // GET: Instruments/Create
         public ActionResult Create()
         {
-            ViewBag.clientID = new SelectList(db.Clients, "clientID", "firstName");
+            ViewBag.clientID = new SelectList(db.Clients, "clientID", "firstName"); //passes clients using a select list, making assigning client easier
             return View();
         }
 
@@ -49,29 +49,29 @@ namespace BlowOut.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "instrumentID,desc,type,price,clientID")] Instrument instrument)
+        public ActionResult Create([Bind(Include = "instrumentID,desc,type,price,clientID")] Instrument instrument) //binds form data to model
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //checks model state
             {
-                instrument.instrumentID = db.Instruments.Max(i => i.instrumentID) + 1;
+                instrument.instrumentID = db.Instruments.Max(i => i.instrumentID) + 1; //manages instrumentID PK in code
                 db.Instruments.Add(instrument);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.clientID = new SelectList(db.Clients, "clientID", "firstName", instrument.clientID);
-            return View(instrument);
+            ViewBag.clientID = new SelectList(db.Clients, "clientID", "firstName", instrument.clientID); //creates client selectlist
+            return View(instrument); //returns to view if invalid
         }
 
         // GET: Instruments/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id) //instrumentID passed
         {
-            if (id == null)
+            if (id == null) //checks if ID is passed
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Instrument instrument = db.Instruments.Find(id);
-            if (instrument == null)
+            if (instrument == null) //checks to see if it's found
             {
                 return HttpNotFound();
             }
@@ -84,9 +84,9 @@ namespace BlowOut.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "instrumentID,desc,type,price,clientID")] Instrument instrument)
+        public ActionResult Edit([Bind(Include = "instrumentID,desc,type,price,clientID")] Instrument instrument) //model binding
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //ensures model is valid
             {
                 db.Entry(instrument).State = EntityState.Modified;
                 db.SaveChanges();
@@ -99,12 +99,12 @@ namespace BlowOut.Controllers
         // GET: Instruments/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (id == null) //makes sure id was passed
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Instrument instrument = db.Instruments.Find(id);
-            if (instrument == null)
+            if (instrument == null) //makes sure instrument exists
             {
                 return HttpNotFound();
             }
@@ -117,7 +117,7 @@ namespace BlowOut.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Instrument instrument = db.Instruments.Find(id);
-            db.Instruments.Remove(instrument);
+            db.Instruments.Remove(instrument); //deeltes instrument from database. This shouldn't really ever be used though
             db.SaveChanges();
             return RedirectToAction("Index");
         }

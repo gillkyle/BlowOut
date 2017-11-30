@@ -11,14 +11,14 @@ namespace BlowOut.Models
     public class Instrument
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int instrumentID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] //we handle primary key
+        public int instrumentID { get; set; } //has fields and data types here
         public string desc { get; set; }
         public string type { get; set; }
         public int price { get; set; }
         public string url { get; set; }
 
-        [ForeignKey("Client")]
+        [ForeignKey("Client")] //navigational client stuff
         public virtual int clientID { get; set; }
         public virtual Client Client { get; set; }
     }

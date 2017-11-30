@@ -12,14 +12,14 @@ namespace BlowOut.Controllers
         public string Index()
         {
             return
-               "<p>Please call Support at <b><u>801-555-1212</u></b>. Thank you!</p>";
+               "<p>Please call Support at <b><u>801-555-1212</u></b>. Thank you!</p>"; //hard coded stuff
         }
 
         // GET: Email query string params
         public string Email(string name, string email)
         {
             return
-               "Thank you " + name + ". We will send an email to " + email;
+               "Thank you " + name + ". We will send an email to " + email; //uses name and email passed to action
         }
 
         // GET: Contact/Details/5

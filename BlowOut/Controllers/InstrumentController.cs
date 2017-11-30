@@ -15,12 +15,12 @@ namespace BlowOut.Controllers
         // GET: Rental
         public ActionResult Index()
         {
-            return RedirectToAction("Rental");
+            return RedirectToAction("Rental"); //index redirects to rental action autmoatically
         }
 
-        public ActionResult Rental(int? instrumentID)
+        public ActionResult Rental(int? instrumentID) //is passes instrumentID
         {
-            Instrument instrument = db.Instruments.Find(instrumentID);
+            Instrument instrument = db.Instruments.Find(instrumentID); //finds instrument and gets a bunch of data for it
             ViewBag.name = instrument.desc;
             ViewBag.url = instrument.url;
             ViewBag.type = instrument.type;
@@ -29,14 +29,14 @@ namespace BlowOut.Controllers
             return View();
         }
 
-        public ActionResult NewOrUsed(int? instrumentNum)
+        public ActionResult NewOrUsed(int? instrumentNum) //gets instrument Num
         {
 
             ViewBag.instrumentNew = instrumentNum;
-            ViewBag.instrumentUsed = instrumentNum + 1;
+            ViewBag.instrumentUsed = instrumentNum + 1; //adds on if used because the way we set up the database, new trumpet would be 3 for example, and used would be 4. Adding one makes it used
 
-            Instrument instrument = db.Instruments.Find(instrumentNum);
-            ViewBag.url = instrument.url;
+            Instrument instrument = db.Instruments.Find(instrumentNum); //get instrument from database
+            ViewBag.url = instrument.url; //get url
 
             return View();
         }

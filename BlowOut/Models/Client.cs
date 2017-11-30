@@ -8,10 +8,10 @@ using System.Web;
 namespace BlowOut.Models
 {
     [Table("Client")]
-    public class Client
+    public class Client //also has a ton of data validation stuff
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)] //we handle the primary key
         public int clientID {get; set;}
         [Required, Display(Name = "First Name"), StringLength(25, MinimumLength = 1), RegularExpression(@"^[A-Z]{1}[a-z A-Z]*$", ErrorMessage = "First Name contains only alphabetic characters and first letter capitalized.")]
         public string firstName { get; set; }
